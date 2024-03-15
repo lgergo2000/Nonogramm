@@ -5,5 +5,6 @@
 #include "generic_list.h"
 
 DEFINE_GENERIC_LIST_FUNCTIONS_HEADER(Vector, State)
+DEFINE_GENERIC_LIST_FUNCTIONS_HEADER(VectorList, Vector)
 
 #endif

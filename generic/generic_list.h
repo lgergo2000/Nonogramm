@@ -44,7 +44,7 @@ typedef int bool;
     void Print##typename(typename* list) { \
         printf("["); \
         for(int i = 0; i<list->length; i++) { \
-            Print##type(list->data[i]); \
+            Print##type(&(list->data[i])); \
         } \
         printf("]\n"); \
     }\

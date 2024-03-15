@@ -7,6 +7,6 @@
 
 typedef char State;
 
-void PrintState(State state);
+void PrintState(State* state);
 
 #endif
