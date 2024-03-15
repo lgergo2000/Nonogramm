@@ -17,10 +17,10 @@ run: clean all
 
 $(BIN)/$(EXECUTABLE): $(wildcard *.c) $(wildcard */*.c)
 	@mkdir -p $(BIN)
-	$(CC) $(CFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) $^ -o $@
 
 out: $(wildcard *.c) $(wildcard */*.c)
-	$(CC) $(CFLAGS) $^ -o $(BIN)\\$(EXECUTABLE).out
+	@$(CC) $(CFLAGS) $^ -o $(BIN)\\$(EXECUTABLE).out
 
 clean:
-	-rm $(BIN)/*
+	-@rm $(BIN)/*
