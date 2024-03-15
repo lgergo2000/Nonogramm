@@ -18,7 +18,7 @@ typedef int bool;
     \
     void Free##typename(typename* list); \
     \
-    void Print##typename(typename* list);\
+    void Print##typename(typename list);\
     \
     typename typename##SliceByRightIndex(typename list, int end_index);\
     \
@@ -41,10 +41,10 @@ typedef int bool;
         free(list->data); \
     } \
     \
-    void Print##typename(typename* list) { \
+    void Print##typename(typename list) { \
         printf("["); \
-        for(int i = 0; i<list->length; i++) { \
-            Print##type(&(list->data[i])); \
+        for(int i = 0; i<list.length; i++) { \
+            Print##type(list.data[i]); \
         } \
         printf("]\n"); \
     }\

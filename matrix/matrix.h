@@ -34,11 +34,11 @@ void MatrixFree(Matrix* matrix);
 /// @param index int
 /// @param select_row bool
 /// @return
-Vector SelectVectorFromMatrix(Matrix* matrix, int index, bool select_row);
+Vector SelectVectorFromMatrix(Matrix matrix, int index, bool select_row);
 
 
 /// @brief Prints the matrix
 /// @param matrix Matrix
-void PrintMatrix(Matrix* matrix);
+void PrintMatrix(Matrix matrix);
 
 #endif

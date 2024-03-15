@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "state.h"
 
-void PrintState(State* state)
+void PrintState(State state)
 {
-    printf("%c", *state);
+    printf("%c", state);
 }
