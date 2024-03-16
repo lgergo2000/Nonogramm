@@ -1,7 +1,7 @@
+#undef VERBOSE
 #include "solver.h"
 #include "fill_matrix_with_vector.h"
 #include "withdraw.h"
-
 
 void SolveBoard(Board* board)
 {
@@ -16,6 +16,10 @@ void SolveBoard(Board* board)
             set = FillMatrixWithVectorIfPossible(&(board->matrix), current_possible_vector, main_index);
             if(set == 1)
             {
+#ifdef VERBOSE
+                PrintMatrix(board->matrix);
+                printf("\n");
+#endif
                 board->definitions.data[main_index].index = definitions_sub_index;
                 break;
             }
