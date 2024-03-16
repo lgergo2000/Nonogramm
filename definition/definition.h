@@ -18,6 +18,10 @@ typedef struct
     int index;
 } Definition;
 
+void PrintDefinition(Definition definition);
+
 Definition InitDefinition(int vector_length, List definition_list);
+
+DEFINE_GENERIC_LIST_FUNCTIONS_HEADER(DefinitionList, Definition)
 
 #endif

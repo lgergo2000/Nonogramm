@@ -11,3 +11,10 @@ Definition InitDefinition(int vector_length, List definition_list)
 
     return definition;
 }
+
+void PrintDefinition(Definition definition)
+{
+    PrintList(definition.definition_list);
+}
+
+IMPLEMENT_GENERIC_LIST_FUNCTIONS(DefinitionList, Definition)
