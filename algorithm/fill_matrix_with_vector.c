@@ -1,4 +1,5 @@
 #include "fill_matrix_with_vector.h"
+#include "utils.h"
 
 /// @brief Replace a given vector in a matrix
 /// @param matrix Matrix*
