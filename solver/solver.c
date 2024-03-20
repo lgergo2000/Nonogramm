@@ -1,4 +1,4 @@
-#undef VERBOSE 8
+#undef VERBOSE
 #include "solver.h"
 #include "fill_matrix_with_vector.h"
 #include "withdraw.h"
@@ -22,8 +22,15 @@ void SolveBoard(Board* board)
             if(set == 1)
             {
 #ifdef VERBOSE
-                PrintMatrix(board->matrix);
-                printf("\n");
+                int max;
+                if(board->number_of_columns > board->number_of_rows) max = board->number_of_columns;
+                else max = board->number_of_rows;
+                if(main_index > ((float)max*2)/3)
+                {
+                    printf("Possible solution found: %d\n", cnt++);
+                    PrintMatrix(board->matrix);
+                    printf("\n");
+                }
 #endif
                 board->definitions.data[main_index].index = definitions_sub_index;
                 break;
@@ -32,9 +39,6 @@ void SolveBoard(Board* board)
         if(set == 1)
         {
             main_index++;
-#ifdef VERBOSE
-            if(main_index > VERBOSE) printf("%d\n", cnt++);
-#endif
             if(main_index == board->definitions.length)
             {
                 printf("Result:\n");
