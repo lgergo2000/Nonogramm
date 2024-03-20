@@ -24,21 +24,20 @@ Matrix MatrixInit(int rows, int columns);
 
 
 /// @brief Free the arrays
-/// @param matrix Matrix
+/// @param matrix
 void MatrixFree(Matrix* matrix);
 
 
 /// @brief Selects a vector from the matrix at the index,
 /// if select_row is TRUE selects a row, else selects a column
-/// @param matrix Matrix
-/// @param index int
-/// @param select_row bool
+/// @param matrix
+/// @param index
+/// @param select_row
 /// @return
-Vector SelectVectorFromMatrix(Matrix matrix, int index, bool select_row);
-
+void SelectVectorFromMatrix(Matrix* matrix, int index, bool select_row, Vector* result_vector);
 
 /// @brief Prints the matrix
-/// @param matrix Matrix
+/// @param matrix
 void PrintMatrix(Matrix matrix);
 
 #endif
