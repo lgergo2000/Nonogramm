@@ -18,8 +18,14 @@ typedef struct
     int index;
 } Definition;
 
+/// @brief Print defintion block
+/// @param definition
 void PrintDefinition(Definition definition);
 
+/// @brief Initialize the definition block with given length
+/// @param vector_length
+/// @param definition_list
+/// @return
 Definition InitDefinition(int vector_length, List definition_list);
 
 DEFINE_GENERIC_LIST_FUNCTIONS_HEADER(DefinitionList, Definition)

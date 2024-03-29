@@ -1,22 +1,20 @@
 #include "withdraw.h"
+#include "fill_matrix_with_vector.h"
 
-void WithdrawDefinition(Matrix* matrix, int definition_index)
+void WithdrawDefinition(Board* board, Vector* tmp)
 {
-    if(definition_index%2 == 0 && (int)(definition_index/2) < matrix->rows) // rows
+    for (int i = 0; i < board->matrix.rows; i++)
     {
-        for(int i = (int)(definition_index/2); i < matrix->columns; i++)
+        for (int j = 0; j < board->matrix.columns; j++)
         {
-            matrix->data[(int)(definition_index/2)][i] = UNKNOWN;
+            board->matrix.data[i][j] = UNKNOWN;
         }
     }
-    else // cols
+
+    for (int i = 0; i < board->definitions.length; i++)
     {
-        if((int)((definition_index+1)/2) < matrix->rows)
-        {
-            for(int i = (int)((definition_index+1)/2); i < matrix->rows; i++)
-            {
-                matrix->data[i][(int)((definition_index+1)/2)-1] = UNKNOWN;
-            }
-        }
+        if(board->definitions.data[i].index == -1) continue;
+        FillMatrixWithVectorIfPossible(&(board->matrix), &(board->definitions.data[i].possible_vectors.data[board->definitions.data[i].index]), i, tmp);
     }
+
 }

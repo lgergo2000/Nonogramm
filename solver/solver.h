@@ -3,6 +3,8 @@
 
 #include "board.h"
 
+/// @brief Main solver function of the application
+/// @param board
 void SolveBoard(Board* board);
 
 #endif

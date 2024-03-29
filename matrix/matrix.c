@@ -24,20 +24,19 @@ void MatrixFree(Matrix* matrix)
 }
 
 
-Vector SelectVectorFromMatrix(Matrix matrix, int index, bool select_row)
+void SelectVectorFromMatrix(Matrix* matrix, int index, bool select_row, Vector* result_vector)
 {
     int length = 0;
-    if(select_row) length = matrix.columns;
-    else length = matrix.rows;
+    if(select_row) length = matrix->columns;
+    else length = matrix->rows;
 
-    Vector vector = InitVector(length);
+    result_vector->length = length;
+
     for(int k = 0; k < length; k++)
     {
-        if(select_row) vector.data[k] = matrix.data[index][k];
-        else vector.data[k] = matrix.data[k][index];
+        if(select_row) result_vector->data[k] = matrix->data[index][k];
+        else result_vector->data[k] = matrix->data[k][index];
     }
-
-    return vector;
 }
 
 
@@ -45,6 +44,9 @@ void PrintMatrix(Matrix matrix)
 {
     for(int i = 0; i < matrix.rows; i++)
     {
-        PrintVector(SelectVectorFromMatrix(matrix, i, TRUE));
+        Vector tmp = InitVector(matrix.columns);
+        SelectVectorFromMatrix(&matrix, i, TRUE, &tmp);
+        PrintVector(tmp);
+        free(tmp.data);
     }
 }

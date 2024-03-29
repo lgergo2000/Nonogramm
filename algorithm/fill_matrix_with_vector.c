@@ -5,22 +5,22 @@
 /// @param matrix Matrix*
 /// @param vector Vector
 /// @param definition_index int
-void ReplaceVectorInMatrix(Matrix* matrix, Vector vector, int definition_index)
+void ReplaceVectorInMatrix(Matrix* matrix, Vector* vector, int definition_index)
 {
-    if(IsRow(*matrix, definition_index))
+    if(IsRow(matrix, definition_index))
     {
-        if(matrix->columns != vector.length) return;
-        for (int i = 0; i < vector.length; i++)
+        if(matrix->columns != vector->length) return;
+        for (int i = 0; i < vector->length; i++)
         {
-            matrix->data[GetRowIndex(*matrix, definition_index)][i] = vector.data[i];
+            matrix->data[GetRowIndex(matrix, definition_index)][i] = vector->data[i];
         }
     }
     else
     {
-        if(matrix->rows != vector.length) return;
-        for (int i = 0; i < vector.length; i++)
+        if(matrix->rows != vector->length) return;
+        for (int i = 0; i < vector->length; i++)
         {
-            matrix->data[i][GetColumnIndex(*matrix, definition_index)] = vector.data[i];
+            matrix->data[i][GetColumnIndex(matrix, definition_index)] = vector->data[i];
         }
     }
 }
@@ -30,25 +30,26 @@ void ReplaceVectorInMatrix(Matrix* matrix, Vector vector, int definition_index)
 /// @param matrix Matrix
 /// @param definition_index int
 /// @return
-Vector SelectVectorFromMatrixWithDefinitonIndex(Matrix matrix, int definition_index)
+void SelectVectorFromMatrixWithDefinitonIndex(Matrix* matrix, int definition_index, Vector* result)
 {
     if(IsRow(matrix, definition_index))
     {
-        return(SelectVectorFromMatrix(matrix, GetRowIndex(matrix, definition_index), TRUE));
+        SelectVectorFromMatrix(matrix, GetRowIndex(matrix, definition_index), TRUE, result);
     }
     else
     {
-        return(SelectVectorFromMatrix(matrix, GetColumnIndex(matrix, definition_index), FALSE));
+        SelectVectorFromMatrix(matrix, GetColumnIndex(matrix, definition_index), FALSE, result);
     }
 }
 
-int FillMatrixWithVectorIfPossible(Matrix* matrix, Vector vector, int definition_index)
+int FillMatrixWithVectorIfPossible(Matrix* matrix, Vector* vector, int definition_index, Vector* tmp)
 {
-    Vector tmp = SelectVectorFromMatrixWithDefinitonIndex(*matrix, definition_index);
-    for (int i = 0; i < vector.length; i++)
+    SelectVectorFromMatrixWithDefinitonIndex(matrix, definition_index, tmp);
+    for (int i = 0; i < vector->length; i++)
     {
-        if(!(vector.data[i] == tmp.data[i] || tmp.data[i] == UNKNOWN)) return -1;
+        if(!(vector->data[i] == tmp->data[i] || tmp->data[i] == UNKNOWN)) return -1;
     }
+    // free(tmp.data);
 
     ReplaceVectorInMatrix(matrix, vector, definition_index);
     return 1;
