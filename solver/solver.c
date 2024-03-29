@@ -74,6 +74,13 @@ void SolveBoard(Board* board)
             if(iter_index == board->definitions.length)
             {
                 printf("Result:\n");
+                for (int i = 0; i < board->matrix.rows; i++)
+                {
+                    for (int j = 0; j < board->matrix.columns; j++)
+                    {
+                        if(board->matrix.data[i][j] == EMPTY) board->matrix.data[i][j] = UNKNOWN;
+                    }
+                }
                 PrintMatrix(board->matrix);
                 break;
             }
